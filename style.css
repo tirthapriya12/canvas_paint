@@ -1,0 +1,58 @@
+html,body{
+
+    margin: 0;
+    padding:0;
+    overflow: hidden;
+}
+#myCanvas{
+    background: #fff;
+    position: relative;
+
+}
+#CanvasHolder{
+    position: fixed;
+    background-color: #4CAF50;
+    padding-top: 6%;
+    height: 530px;
+    width: 700px;
+    overflow: auto;
+    margin-left: 5%;
+    margin-top: 2%;
+    border-right: 3px;
+    border-left: 3px;
+    border: 3px solid #4c5daf;
+    border-radius: 4px;
+    display: inline-block;
+    overflow: hidden;
+    transition:0.45s ease-out;
+    z-index:99999999999999;
+}
+#myTempCanvas{
+    position: absolute;
+    top:82px;
+    left: 0px;
+}
+
+.cursorPencil{
+
+    cursor:url('resource/pencil1.png') 2 155, auto;
+}
+
+.cursorEraser{
+    cursor:url('resource/eraser_cursor.cur'),auto;
+}
+
+.cursorObject{
+    cursor: crosshair
+}
+
+#menu{
+        display: inline-block;
+    position: relative;
+    top: 2%;
+    left: 3px;
+    padding:1%;
+    min-width: 30%;
+    min-height: 55px;
+    border-radius: 5px;
+}
