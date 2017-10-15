@@ -7,10 +7,18 @@ function AttachListeners() {
     }, false);
     $('.dropdown-item').on('click', OptionChoose);
     color.addEventListener('change', function () {
-        context_temp.strokeStyle = color.value;
+        if (!isErasing) {
+            context_temp.strokeStyle = color.value;
+        }
     });
+    $('.others').on('click', OptionChoose);
+    $('#eraser_size').on('change', resizeEraser)
 }
 
+function resizeEraser(event) {
+    isErasing=true;
+    context_temp.lineWidth = parseInt($(this).val());
+}
 
 function OptionChoose() {
     var id = $(this).attr('data-id');
@@ -18,15 +26,30 @@ function OptionChoose() {
     switch (id) {
 
         case 'pencil': {
+            context_temp.strokeStyle=prevColor;
             tool = new Pencil();
+            isErasing=false;
+            canvas_temp.classList = "cursorPencil";
             break;
         }
         case 'line': {
+            context_temp.strokeStyle=prevColor;
             tool = new LineTool();
+            isErasing=false;
+            canvas_temp.classList = "cursorObject";
             break;
         }
         case 'rectangle': {
+            context_temp.strokeStyle=prevColor;
             tool = new RectangleTool();
+            isErasing=false;
+            canvas_temp.classList = "cursorObject";
+            break;
+        }
+        case 'eraser': {
+            prevColor=context_temp.strokeStyle;
+            tool = new Eraser();
+            canvas_temp.classList = "cursorEraser";
             break;
         }
     }
@@ -40,10 +63,10 @@ function redraw() {
 }
 
 function mouseDown(e) {
-
+    //draw only if left mouse button is used to draw
     if (e.which === 1) {
-        mouse.x = e.layerX - delta.x;
-        mouse.y = e.layerY - delta.y;
+        mouse.x = e.layerX;
+        mouse.y = e.layerY;
         tool.mouseDown(context_temp);
         canvas_temp.addEventListener('mousemove', startDraw, false);
     }
@@ -51,8 +74,8 @@ function mouseDown(e) {
 }
 
 function startDraw(e) {
-    mouse.x = e.layerX - delta.x;
-    mouse.y = e.layerY - delta.y;
+    mouse.x = e.layerX;
+    mouse.y = e.layerY;
     tool.mouseMove(context_temp);
 }
 

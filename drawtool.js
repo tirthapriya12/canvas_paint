@@ -12,6 +12,11 @@ DrawTool.prototype.mouseDown = function (ctx) {
 
 DrawTool.prototype.mouseMove = function (ctx) {
 
+     if (this.started) {
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+    }
+
 };
 
 DrawTool.prototype.mouseUp = function (ctx) {
