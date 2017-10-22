@@ -4,12 +4,39 @@ html,body{
     padding:0;
     overflow: hidden;
 }
+
+.minimize{
+  position: absolute;
+    top: 0;
+    right: 0;
+    height: 21px;
+    width: 25px;
+}
+
+#toggleCanvas{
+  position: absolute;
+  top: 10%;
+  right:5%;
+}
+.MinimizeTray{
+  position: fixed;
+  left: 40%;
+  top:95%;
+  display: inline-block;
+  width: 150px;
+  height: 36px;
+  background: #4CAF50;
+  cursor: pointer;
+  display: none;
+  z-index: 2;
+  text-align: center;
+}
 #myCanvas{
     background: #fff;
     position: relative;
 
 }
-#CanvasHolder{
+.CanvasHolder{
     position: fixed;
     background-color: #4CAF50;
     padding-top: 6%;
@@ -61,7 +88,12 @@ html,body{
 .btn-primary{
   background-color: #4c5daf;
 }
-
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
 
 input[type=range] {
   -webkit-appearance: none;

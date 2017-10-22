@@ -14,7 +14,10 @@
 </head>
 
 <body>
-    <div id="CanvasHolder">
+
+    <button id="toggleCanvas" class="btn btn-primary ">Open</button>
+    <div id="CanvasHolder" class="CanvasHolder hide">
+        <button class="minimize btn btn-danger"><i style="position: absolute; top: 0; left: 8px;">&#x2212;</i></button>
         <canvas id="myCanvas" height="350px" width="700px"></canvas>
         <div id="menu">
             <div class="btn-group dropup">
@@ -39,14 +42,14 @@
                         <input class="input-range" id="eraser_size" type="range" step="0.5" value="12" min="0.5" max="30" type="range"></span>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary others">Samsung</button>
-                <button type="button" class="btn btn-primary others">Sony</button>
+                <button type="button" class="btn btn-primary others"></button>
+                <button type="button" class="btn btn-primary others"></button>
             </div>
 
-
+        </div>  
         </div>
     </div>
-    </div>
+    <div class="MinimizeTray"></div>
     <script src="drawtool.js"></script>
     <script src="RectangleTool.js"></script>
     <script src="LineTool.js"></script>

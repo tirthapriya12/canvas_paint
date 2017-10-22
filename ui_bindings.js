@@ -8,7 +8,7 @@ function AttachListeners() {
     $('.dropdown-item').on('click', OptionChoose);
     color.addEventListener('change', function () {
         if (!isErasing) {
-            context_temp.strokeStyle = color.value;
+            tool.color = color.value;
         }
     });
     $('.others').on('click', OptionChoose);
@@ -16,8 +16,8 @@ function AttachListeners() {
 }
 
 function resizeEraser(event) {
-    isErasing=true;
-    context_temp.lineWidth = parseInt($(this).val());
+    isErasing = true;
+    tool.lineWidth = parseInt($(this).val());
 }
 
 function OptionChoose() {
@@ -26,28 +26,24 @@ function OptionChoose() {
     switch (id) {
 
         case 'pencil': {
-            context_temp.strokeStyle=prevColor;
             tool = new Pencil();
-            isErasing=false;
+            isErasing = false;
             canvas_temp.classList = "cursorPencil";
             break;
         }
         case 'line': {
-            context_temp.strokeStyle=prevColor;
             tool = new LineTool();
-            isErasing=false;
+            isErasing = false;
             canvas_temp.classList = "cursorObject";
             break;
         }
         case 'rectangle': {
-            context_temp.strokeStyle=prevColor;
             tool = new RectangleTool();
-            isErasing=false;
+            isErasing = false;
             canvas_temp.classList = "cursorObject";
             break;
         }
         case 'eraser': {
-            prevColor=context_temp.strokeStyle;
             tool = new Eraser();
             canvas_temp.classList = "cursorEraser";
             break;
@@ -56,7 +52,7 @@ function OptionChoose() {
 }
 
 function redraw() {
-
+    //draws image on other canvas 
     context.drawImage(canvas_temp, 0, 0);
     context_temp.clearRect(0, 0, canvas_temp.width, canvas_temp.height);
 
@@ -65,6 +61,8 @@ function redraw() {
 function mouseDown(e) {
     //draw only if left mouse button is used to draw
     if (e.which === 1) {
+        context_temp.strokeStyle=tool.color;
+        context_temp.lineWidth=tool.lineWidth;
         mouse.x = e.layerX;
         mouse.y = e.layerY;
         tool.mouseDown(context_temp);
@@ -109,3 +107,33 @@ function makeDraggable(element, another) {
         });
     });
 }
+
+$('#toggleCanvas').on('click', function (event) {
+
+    if ($('#CanvasHolder').hasClass('show')) {
+        $('#CanvasHolder').hide();
+        $('#toggleCanvas').html('Open');
+        $('.MinimizeTray').hide();
+        $('#CanvasHolder').removeClass('show');
+    }
+    else {
+        $('#CanvasHolder').addClass('show')
+        $('#CanvasHolder').show();
+        $('#toggleCanvas').html('Close');
+    }
+
+
+});
+
+$('.MinimizeTray').on('click', function () {
+    $('#CanvasHolder').show();
+    $('.MinimizeTray').css('display', 'none');
+    $('#toggleCanvas').html('Close');
+
+});
+
+$('.minimize').on('click', function () {
+    $('#CanvasHolder').hide();
+    $('.MinimizeTray').css('display', 'inline-block');
+    $('.MinimizeTray').html('Paint App');
+})

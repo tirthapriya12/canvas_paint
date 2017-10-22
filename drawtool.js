@@ -1,6 +1,8 @@
 var DrawTool = function () {
     this.started = false;
     this.prev={};
+    this.color="#000";
+    this.lineWidth=3;
 };
 
 DrawTool.prototype.mouseDown = function (ctx) {

@@ -20,13 +20,13 @@ function drawInit() {
     context_temp.lineWidth = 3,
         context_temp.lineCap = 'round',
         context_temp.lineJoin = 'round';
-    prevColor = context_temp.strokeStyle
     tool = new Pencil();
     canvas_temp.classList = 'cursorPencil';
 }
 
 function Eraser(width) {
-    context_temp.strokeStyle = '#fff';
+    this.color = '#fff';
+    this.lineWidth=3;
 }
 Eraser.prototype = new DrawTool();
 
