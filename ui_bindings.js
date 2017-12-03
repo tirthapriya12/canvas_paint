@@ -3,6 +3,9 @@ function AttachListeners() {
     canvas_temp.addEventListener('mouseup', function (ev) {
         tool.mouseUp(context_temp);
         redraw();
+        drawState.addState( canvas.toDataURL());
+        drawState.updateIndex();
+        $('#prev').removeAttr('disabled');
         canvas_temp.removeEventListener('mousemove', startDraw, false);
     }, false);
     $('.dropdown-item').on('click', OptionChoose);
@@ -61,8 +64,8 @@ function redraw() {
 function mouseDown(e) {
     //draw only if left mouse button is used to draw
     if (e.which === 1) {
-        context_temp.strokeStyle=tool.color;
-        context_temp.lineWidth=tool.lineWidth;
+        context_temp.strokeStyle = tool.color;
+        context_temp.lineWidth = tool.lineWidth;
         mouse.x = e.layerX;
         mouse.y = e.layerY;
         tool.mouseDown(context_temp);
@@ -110,14 +113,14 @@ function makeDraggable(element, another) {
 
 $('#toggleCanvas').on('click', function (event) {
 
-    if ($('#CanvasHolder').hasClass('show')) {
+    if ($('#CanvasHolder').hasClass('open')) {
         $('#CanvasHolder').hide();
         $('#toggleCanvas').html('Open');
         $('.MinimizeTray').hide();
-        $('#CanvasHolder').removeClass('show');
+        $('#CanvasHolder').removeClass('open');
     }
     else {
-        $('#CanvasHolder').addClass('show')
+        $('#CanvasHolder').addClass('open')
         $('#CanvasHolder').show();
         $('#toggleCanvas').html('Close');
     }
@@ -137,3 +140,30 @@ $('.minimize').on('click', function () {
     $('.MinimizeTray').css('display', 'inline-block');
     $('.MinimizeTray').html('Paint App');
 })
+
+$('#prev').on('click', function () {
+    $('#next').removeAttr('disabled');
+    if (drawState.index === 1) {
+        $('#prev').attr('disabled', 'true');
+    }
+    context.clearRect(0,0,canvas_temp.width,canvas_temp.height);
+    drawState.goToPrev();
+    context.drawImage(drawState.getPrevState(), 0, 0);
+});
+
+$('#next').on('click', function () {
+    drawState.updateIndex();
+    context.clearRect(0,0,canvas_temp.width,canvas_temp.height);
+    context.drawImage(drawState.getNextState(), 0, 0);
+    if(drawState.index == drawState.states.length-1)
+    {
+        $('#next').attr('disabled','true');
+    }
+    $('#prev').removeAttr('disabled');
+});
+$('#save').on('click',function(){
+    var link = document.createElement('a');
+    link.href = canvas.toDataURL();
+    link.download = "mypainting.jpg";
+    link.click();
+});

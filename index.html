@@ -17,43 +17,65 @@
 
     <button id="toggleCanvas" class="btn btn-primary ">Open</button>
     <div id="CanvasHolder" class="CanvasHolder hide">
-        <button class="minimize btn btn-danger"><i style="position: absolute; top: 0; left: 8px;">&#x2212;</i></button>
+        <button class="minimize btn btn-danger">
+            <i style="position: absolute; top: 0; left: 8px;">&#x2212;</i>
+        </button>
         <canvas id="myCanvas" height="350px" width="700px"></canvas>
         <div id="menu">
             <div class="btn-group dropup">
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     style="background-color: #4c5daf">
-      Tool Select
-    </button>
+                    Tool Select
+                </button>
                 <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -165px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" data-id="pencil" href="#" title="pencil tool"><img src="resource/pencil1.png"></a>
-                    <a class="dropdown-item" data-id="line" href="#" title="line tool"><img src="resource/line.png"></a>
-                    <a class="dropdown-item" data-id="rectangle" href="#" title="rectangle tool"><img src="resource/rectangle.png"></a>
+                    <a class="dropdown-item" data-id="pencil" href="#" title="pencil tool">
+                        <img src="resource/pencil1.png">
+                    </a>
+                    <a class="dropdown-item" data-id="line" href="#" title="line tool">
+                        <img src="resource/line.png">
+                    </a>
+                    <a class="dropdown-item" data-id="rectangle" href="#" title="rectangle tool">
+                        <img src="resource/rectangle.png">
+                    </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" data-id="colorpicker" href="#" title="color picker"><input id="color" type="color"></a>
+                    <a class="dropdown-item" data-id="colorpicker" href="#" title="color picker">
+                        <input id="color" type="color">
+                    </a>
                 </div>
             </div>
 
             <div class="btn-group btn-group-sm" style="margin-left:3%">
                 <div class="dropup">
-                    <button type="button" data-id="eraser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-primary others"><img src='resource/eraser.png' height="20"></button>
+                    <button type="button" data-id="eraser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-primary others">
+                        <img src='resource/eraser.png' height="20">
+                    </button>
                     <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -165px, 0px); top: 0px; left: 0px; will-change: transform;">
                         <span class="dropdown-item" title="eraser size">
-                        <input class="input-range" id="eraser_size" type="range" step="0.5" value="12" min="0.5" max="30" type="range"></span>
+                            <input class="input-range" id="eraser_size" type="range" step="0.5" value="12" min="0.5" max="30" type="range">
+                        </span>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary others"></button>
-                <button type="button" class="btn btn-primary others"></button>
             </div>
+            
+                <button id="prev" title ="prev" type="button" class="btn btn-primary others" style="color:white; text-align:center; font-size:18px">
+                    <
+                </button>
+                <button type="button" title="next" id="next" disabled="true" class="btn btn-primary others" style="color:white; text-align:center; font-size:18px">
+                    >
+                </button>
+                <button type="button" title="save" id="save" class="btn btn-primary others" style="color:white; text-align:center; font-size:18px">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                </button>
 
-        </div>  
         </div>
+    </div>
     </div>
     <div class="MinimizeTray"></div>
     <script src="drawtool.js"></script>
     <script src="RectangleTool.js"></script>
     <script src="LineTool.js"></script>
     <script src="Pencil.js"></script>
+    <script src="DrawStates.js"></script>
     <script src="ui_bindings.js"></script>
     <script src="draw.js"></script>
 </body>

@@ -8,6 +8,7 @@ var canvas = document.getElementById('myCanvas'),
     color = document.getElementById('color'),
     mouse = { x: 0, y: 0 },
     isErasing = false,
+    drawState = new DrawState(),
     prevColor;
 
 
@@ -22,6 +23,12 @@ function drawInit() {
         context_temp.lineJoin = 'round';
     tool = new Pencil();
     canvas_temp.classList = 'cursorPencil';
+    if(drawState.index===0)
+    {
+        $('#next').attr('disabled','true');
+        $('#prev').attr('disabled', 'true');
+    }
+    drawState.addState(canvas.toDataURL());
 }
 
 function Eraser(width) {
