@@ -1,4 +1,4 @@
-var Pencil = function () { };
+function Pencil() { };
 Pencil.prototype = new DrawTool();
 
 Pencil.prototype.mouseMove = function (ctx) {

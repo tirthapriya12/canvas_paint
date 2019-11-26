@@ -1,8 +1,8 @@
-var DrawTool = function () {
+function DrawTool() {
     this.started = false;
-    this.prev={};
-    this.color="#000";
-    this.lineWidth=3;
+    this.prev = {};
+    this.color = "#000";
+    this.lineWidth = 3;
 };
 
 DrawTool.prototype.mouseDown = function (ctx) {
@@ -14,7 +14,7 @@ DrawTool.prototype.mouseDown = function (ctx) {
 
 DrawTool.prototype.mouseMove = function (ctx) {
 
-     if (this.started) {
+    if (this.started) {
         ctx.lineTo(mouse.x, mouse.y);
         ctx.stroke();
     }
