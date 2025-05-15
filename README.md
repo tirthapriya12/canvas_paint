@@ -1,1 +1,1 @@
-A simple paint application made just to beat time because I was getting bored
+A simple paint application using vanila JS and some jQuery to add some animation
